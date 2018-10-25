@@ -677,12 +677,17 @@ definitions:
         - "sold"
     xml:
       name: "Pet"
-  Sentence:
+
+
+  UserSentence:
     type: "object"
     properties:
+      id:
+        type: "integer"
+        format: "int64"
       sentence:
         type: "string"
-        example: "The life of a cab horse is difficult"
+        example: "The life of a <b>cab</b> horse is difficult"
       translate:
         type: "string"
         example: "出租车马的生活很困难"
@@ -691,6 +696,58 @@ definitions:
         example: "<<Black Beauty>>"
       from_link:
         type: "string"
+      wordList:
+        type: "array"
+        items:
+          $ref: "#/definitions/UserWord"
+          
+  UserWord:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      word:
+        type: "string"
+        example: "cab"
+      source_meaning:
+        type: "string"
+        example: "a horse-drawn vehicle for public hire"
+      target_meaning:
+        type: "string"
+        example: "出租汽车；出租马车"
+      picture:
+        type: "string"
+        example: "https://en.wikipedia.org/wiki/File:Yellow_cabs_2.jpg"
+      sound_mark:
+        type: "string"
+
+  WordRead:
+    properties:
+      word:
+        type: "string"
+        example: "cab"
+      word_read_type_id:
+        type: "integer"
+        example: 1
+      symbol:
+        type: "string"
+        example: "kæb"
+      # todo 暂时不添加音频
+
+  WordReadType:
+    properties:
+      id:
+        type: "integer"
+        example: "1"
+      name:
+        type: "string"
+        example: "American"
+
+
+
+
+
         
         
   ApiResponse:
